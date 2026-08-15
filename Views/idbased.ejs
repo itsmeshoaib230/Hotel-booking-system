@@ -17,10 +17,10 @@
     <ul>
     <li><b>Title:</b><%= particularlist.title %></li>
     <li><b>Description:</b><%= particularlist.description %></li>
-    <li><b>Price:</b><%= particularlist.price %></li>
+    <li><b>Price:</b>&nbsp;&#8377;<%= particularlist.price.toLocaleString("en-IN") %>/-</li>
     <li><b>Country:</b><%= particularlist.country %></li>
     <li><b>Location:</b><%= particularlist.location %></li>
     </ul>
-    <img src="<%=particularlist.image.url %>">
+    <img src="<%=particularlist.image.url %>" alt="resort img">
 </body>
 </html>

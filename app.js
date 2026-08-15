@@ -37,11 +37,23 @@ app.get("/listing",async (req,res)=>{
     res.render("home.ejs",{ listingdetails });
 });
 
+app.get("/listing/new",(req,res)=>{
+    res.render("new.ejs");
+});
+
+app.post("/listing/new",async (req,res)=>{
+    const listt=new list(req.body.listing);
+    await listt.save();
+    // console.log(listt);
+    res.redirect("/listing");
+});
+
 app.get("/listing/:id",async (req,res)=>{
     let{id}=req.params;
     const particularlist=await list.findById(id);
     res.render("idbased.ejs",{ particularlist });
 });
+
 
 app.get("/",(req,res)=>{
     res.send("you are at root page");

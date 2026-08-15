@@ -11,10 +11,12 @@ let ListSchema=new Schema({
     },
     image:{
         filename:{
-            type:String
+            type:String,
+            default:"default image"
         },
         url:{
             type:String,
+            default:"https://unsplash.com/photos/deer-with-fuzzy-velvet-antlers-eeq4VYT4Ueo?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink",
         }
     },
     price:{
