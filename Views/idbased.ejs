@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            height:250px;
+            width:250px;
+            margin-left:27px;
+        }
+    </style>
+</head>
+<body>
+    <h2>_id:<%= particularlist._id %></h2>
+    <ul>
+    <li><b>Title:</b><%= particularlist.title %></li>
+    <li><b>Description:</b><%= particularlist.description %></li>
+    <li><b>Price:</b><%= particularlist.price %></li>
+    <li><b>Country:</b><%= particularlist.country %></li>
+    <li><b>Location:</b><%= particularlist.location %></li>
+    </ul>
+    <img src="<%=particularlist.image.url %>">
+</body>
+</html>

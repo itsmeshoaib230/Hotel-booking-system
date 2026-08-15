@@ -13,7 +13,7 @@ main()
 });
 
 app.set("view engine","ejs");
-app.set(path.join(__dirname,"Views"));
+app.set("views",path.join(__dirname,"Views"));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}));
@@ -33,8 +33,14 @@ app.listen(port,()=>{
 // let listing=mongoose.model("listing",ListSchema);
 //index route
 app.get("/listing",async (req,res)=>{
-    let listingdetails = list.find({})
+    const listingdetails = await list.find({});
     res.render("home.ejs",{ listingdetails });
+});
+
+app.get("/listing/:id",async (req,res)=>{
+    let{id}=req.params;
+    const particularlist=await list.findById(id);
+    res.render("idbased.ejs",{ particularlist });
 });
 
 app.get("/",(req,res)=>{
