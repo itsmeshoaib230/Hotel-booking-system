@@ -1,0 +1,17 @@
+{
+  "name": "airbnb",
+  "version": "1.0.0",
+  "description": "Airbnb is a popular tool to book hotels and my project looks more like that but i thought to improve and make it better",
+  "license": "ISC",
+  "author": "shoaib akthar",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.2"
+  }
+}
