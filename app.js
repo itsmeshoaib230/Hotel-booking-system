@@ -33,19 +33,11 @@ app.listen(port,()=>{
 // let listing=mongoose.model("listing",ListSchema);
 //index route
 app.get("/listing",async (req,res)=>{
-    // let list1=new list({
-    //     tittle:"Sea Port Resort",
-    //     description:"Sea shore location and sun rise, sun set.",
-    //     price:1500,
-    //     place:"Goa's south side resort",
-    //     location:"durdashan colony,pincode:56432."
-    // });
-    // await list1.save();
-    // console.log("saved data");
-    res.render("home.ejs",{list});
-})
+    let listingdetails = list.find({})
+    res.render("home.ejs",{ listingdetails });
+});
 
 app.get("/",(req,res)=>{
     res.send("you are at root page");
-})
+});
 
