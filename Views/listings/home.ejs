@@ -1,11 +1,26 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <body>
-    <h1>List Of Places:</h1>
-    <ul>
+    <h3 class="indexejs">List Of Available Places:</h3>
+    <div class="row row-cols-lg-3 row-cols-m-2 row-cols-s-1">
+     <% for(let details of listingdetails){ %>
+        <a class="cardanch" href="/listing/<%=details._id %>">
+        <div class="card">
+        <img class="card-img-top" src="<%=details.image.url%>" alt="Card image cap" style="height:18rem;">
+        <div class="card-body">
+        <p class="card-text">
+            <b><%=details.title %></b> <br>
+            &#8377;<%= details.price.toLocaleString("en-IN") %>/night
+        </p>
+        </div>
+        </div>
+        </a>
+     <% } %>
+     </div>
+    <!-- <ul>
     <% for(let details of listingdetails){ %>
       <li><a href="/listing/<%= details._id %>"><%= details.title  %></a></li>
     <% } %>
-    </ul>
+    </ul> -->
     <!-- <form method="get" action="/listing/new">
         <button style="font-size: large; margin-left:45px;">Add resort</button>
     </form> -->
