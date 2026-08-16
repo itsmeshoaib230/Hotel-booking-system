@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <form method="post" action="/listing/<%=obj._id %>/edit?_method=PUT">
+        Tittle:
+        <input type="text" name="listing[title]" placeholder="<%=obj.title %>" value="<%=obj.title%>">
+        <br><br>
+        Description:
+        <textarea type="text" name="listing[description]" rows="4" cols="26">
+            <%=obj.description %>
+        </textarea>
+        <br><br>
+        ImageText:
+        <input type="text" name="listing[image][filename]" value="<%= obj.image.filename %>" >
+        <br><br>
+        ImageUrl:
+        <input type="text" name="listing[image][url]" value="<%= obj.image.url %>">
+        <br><br>
+        <!-- https://unsplash.com/photos/blue-and-white-wooden-house-beside-coconut-tree-during-daytime-lWHJwoSZf7M -->
+        Price:
+        <input type="Number" name="listing[price]" value="<%=obj.price %>">
+        <br><br>
+        Location:
+        <input type="text" name="listing[location]" value="<%=obj.location %>">
+        <br><br>
+        Country:
+        <input type="text" name="listing[country]" value="<%= obj.country%>">
+        <br><br>
+        <button>Submit</button>
+    </form>
+</body>

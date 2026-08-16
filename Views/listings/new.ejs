@@ -1,0 +1,32 @@
+
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <h3>New Hotel reg.</h3>
+    <form method="post" action="/listing/new">
+        Tittle:
+        <input type="text" name="listing[title]" placeholder="title of ur resort">
+        <br><br>
+        Description:
+        <textarea type="text" name="listing[description]" rows="4" cols="18" >
+            description
+        </textarea>
+        <br><br>
+        ImageText:
+        <input type="text" name="listing[image][filename]" placeholder="image caption">
+        <br><br>
+        ImageUrl:
+        <input type="text" name="listing[image][url]" placeholder="image link">
+        <br><br>
+        <!-- https://unsplash.com/photos/blue-and-white-wooden-house-beside-coconut-tree-during-daytime-lWHJwoSZf7M -->
+        Price:
+        <input type="Number" name="listing[price]" placeholder="price of ur resort">
+        <br><br>
+        Location:
+        <input type="text" name="listing[location]" placeholder="location of ur resort">
+        <br><br>
+        Country:
+        <input type="text" name="listing[country]" placeholder="country of ur resort">
+        <br><br>
+        <button>Submit</button>
+    </form>
+</body>

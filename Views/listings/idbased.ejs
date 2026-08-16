@@ -1,0 +1,20 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <h2>_id:<%= particularlist._id %></h2>
+    <ul>
+    <li><b>Title:</b><%= particularlist.title %></li>
+    <li><b>Description:</b><%= particularlist.description %></li>
+    <li><b>Price:</b>&nbsp;&#8377;<%= particularlist.price.toLocaleString("en-IN") %>/-</li>
+    <li><b>Country:</b><%= particularlist.country %></li>
+    <li><b>Location:</b><%= particularlist.location %></li>
+    </ul>
+    <img src="<%=particularlist.image.url %>" alt="resort img">
+    <br><br>
+    <form method="get" action="/listing/<%= particularlist._id %>/edit">
+        <button style="margin-left:30px; background-color: gold; font-size: large;">Edit details</button>
+    </form>
+    <br>
+    <form method="post" action="/listing/<%=particularlist.id%>/delete?_method=delete">
+        <button style="font-size: large; margin-left:45px; background-color: gold;">Delete</button>
+    </form>
+</body>

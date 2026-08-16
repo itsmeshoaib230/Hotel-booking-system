@@ -1,0 +1,12 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <h1>List Of Places:</h1>
+    <ul>
+    <% for(let details of listingdetails){ %>
+      <li><a href="/listing/<%= details._id %>"><%= details.title  %></a></li>
+    <% } %>
+    </ul>
+    <form method="get" action="/listing/new">
+        <button style="font-size: large; margin-left:45px;">Add resort</button>
+    </form>
+</body>
