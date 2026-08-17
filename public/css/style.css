@@ -70,3 +70,46 @@ body{
 .navbar-brand:hover{
     color:rgb(254,71,83);
 }
+/* New listing */
+.add-btn{
+    border:none;
+    background-color: rgb(254, 71, 83);
+}
+
+
+.card-img-overlay{
+    opacity:0;
+}
+
+.card-img-overlay:hover{
+    opacity:0.2;
+    background-color:white;
+} 
+
+/* edit */
+.edit-btn{
+    border:none;
+    background-color: rgb(254, 71, 83);
+    margin-right:1.4rem;
+}
+
+.edit-form{
+    font-weight: 500;
+}
+
+.edit-img{
+    height:50vh;
+}
+
+/* .container{
+    margin-left:0;
+    margin-right:0;
+} */
+/* 
+footer,.fa-info{
+    width:100%;
+} */
+
+.id-btn{
+    display:flex;
+}

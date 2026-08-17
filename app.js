@@ -46,6 +46,7 @@ app.get("/listing/new",(req,res)=>{
 });
 
 app.post("/listing/new",async (req,res)=>{
+    let{title:t,description:d,image:i,price:p,location:l,country:c}=req.body.listing;
     const listt=new list(req.body.listing);
     await listt.save();
     // console.log(listt);
