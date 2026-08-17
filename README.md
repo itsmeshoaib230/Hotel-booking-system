@@ -1,4 +1,4 @@
-<img src="./img.jpg" alt="logo">
+<img src="./logo.png" alt="logo">
 # TravelJ -- Online Affordable Hotel Booking.
 <h2>Project By:</h2>
 <ul>
