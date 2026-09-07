@@ -2,23 +2,30 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <body>
     <div class="row">
-    <form method="post" action="/listing/new">
+    <form method="post" action="/listing/new" novalidate class="needs-validation">
         <div class="col-8 offset-2">
         <h3>New Hotel registration:</h3>
         <div class="mb-3">
         <lable for="title" class="form-label">Title:</lable>
-        <input type="text" name="listing[title]" placeholder="Write a catchy title" class="form-control">
+        <input type="text" name="listing[title]" placeholder="Write a catchy title" class="form-control" required>
+        <div class="valid-feedback">
+            Kutha dengisthundi kani eyuu..
+         </div>
         </div>
         <div class="mb-3">
         <lable for="title" class="form-label">Description:</lable>
-        <textarea type="text" name="listing[description]" class="form-control">
-
-        </textarea>
+        <textarea type="text" name="listing[description]" class="form-control" required></textarea>
+         <div class="invalid-feedback">
+            description rayi ra unga
+         </div>
         </div>
         <div class="row">
         <div class="mb-3 col-md-4">
         <lable for="imagefilename" class="form-label">Image Caption:</lable>
-        <input type="text" name="listing[image][filename]" placeholder="Sir karthik enjoying" class="form-control">
+        <input type="text" name="listing[image][filename]" placeholder="Sir karthik enjoying" class="form-control" required>
+         <div class="invalid-feedback">
+            image caption dal lodu
+         </div>
         </div>
         <div class="mb-3 col-md-8">
         <lable for="imageurl" class="form-label">Image Url:</lable>
@@ -27,22 +34,31 @@
         </div>
          <div class="mb-3">
         <lable for="price" class="form-label">Price:</lable>
-        <input type="Number" name="listing[price]" placeholder="1200" class="form-control">
+        <input type="text" name="listing[price]" placeholder="1200" class="form-control" required>
+         <div class="invalid-feedback">
+           Amount kitna rakhna hai toh daal
+         </div>
         </div>
         
          <div class="mb-3">
         <lable for="location" class="form-label">Location:</lable>
-        <input type="text" name="listing[location]" placeholder="Nikhiluvr,anatapur" class="form-control">
+        <input type="text" name="listing[location]" placeholder="Nikhiluvr,anatapur" class="form-control" required>
+         <div class="invalid-feedback">
+            Ekkad sachindo resort rayi
+         </div>
         </div>
 
         <div class="mb-4">
         <lable for="country" class="form-label">Country:</lable>
-        <input type="text" name="listing[country]" placeholder="India" class="form-control">
-        </div>
+        <input type="text" name="listing[country]" placeholder="India" class="form-control" required>
+        <div class="invalid-feedback">
+            india ani rayadaniki kuda gudda baruva
+         </div>
+         </div>
         <button type="submit" class="btn btn-dark add-btn">Submit</button>
-
         <br>
         </div>
     </form>
     </div>
+   
 </body>

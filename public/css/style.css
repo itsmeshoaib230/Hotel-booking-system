@@ -7,9 +7,20 @@
 }
 .nav-link{
     color:#222222 !important;
+    font-size: 1.1rem;
 }
-body{
-    background-color: rgb(255, 254, 254);
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
 }
 
 .fa-info{
@@ -48,7 +59,7 @@ body{
 .card-img-top{
     border-radius: 0.8rem !important;
 }
-.card{
+.listing-card{
     border:none !important;
     margin-bottom:1rem;
 }
@@ -112,4 +123,8 @@ footer,.fa-info{
 
 .id-btn{
     display:flex;
+}
+
+.usercred{
+    margin-right:0;
 }

@@ -1,18 +1,24 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <body>
     <div class="row">
-    <form method="post" action="/listing/<%=obj._id %>/edit?_method=PUT">
+    <form method="post" action="/listing/<%=obj._id %>/edit?_method=PUT" novalidate class="needs-validation">
         <div class="col-8 offset-2">
             <h3>Edit Details:</h3>
         <div class="mb-3">
         <lable for="title" class="form-label edit-form">Title:</lable>
-        <input type="text" name="listing[title]" placeholder="<%=obj.title %>" value="<%=obj.title%>" class="form-control">
+        <input type="text" name="listing[title]" placeholder="<%=obj.title %>" value="<%=obj.title%>" class="form-control" required>
+        <div class="valid-feedback">
+            Nice Caption dude!
+        </div>
         </div>
         <div class="mb-3">
         <lable for="description" class="form-label edit-form">Description:</lable>
-        <textarea type="text" name="listing[description]"  class="form-control"><%=obj.description %></textarea>
+        <textarea type="text" name="listing[description]"  class="form-control" required><%=obj.description %></textarea>
+        <div class="invalid-feedback">
+            please enter description
         </div>
-    <div class="row">
+        </div>
+        <div class="row">
         <div class="col-4">
         <div class="mb-3">
         <lable for="imagefilename" class="form-label edit-form">ImageText:</lable>
@@ -29,19 +35,29 @@
         
         <div class="mb-3">
         <lable for="price" class="form-label edit-form">Price:</lable>
-         <input type="Number" name="listing[price]" value="<%=obj.price %>" class="form-control">
+         <input type="Number" name="listing[price]" value="<%=obj.price %>" class="form-control" required>
+        <div class="invalid-feedback">
+            please enter price
+        </div>
         </div>
         <div class="mb-3">
             <lable for="location" class="form-lable edit-form">Location:</lable>
-            <input type="text" name="listing[location]" value="<%=obj.location %>" class="form-control">
+            <input type="text" name="listing[location]" value="<%=obj.location %>" class="form-control" required>
+        <div class="invalid-feedback">
+            please enter location
+        </div>
         </div>
         <div class="mb-3">
             <lable for="country" class="form-lable edit-form">Country:</lable>
-            <input type="text" name="listing[country]" value="<%=obj.country %>" class="form-control">
+            <input type="text" name="listing[country]" value="<%=obj.country %>" class="form-control" required>
+        <div class="invalid-feedback">
+            enter country
+        </div>
         </div>
         <br>
         <button type="submit" class="btn btn-dark edit-btn">Edit</button>
         </div>
     </form>
     </div>
+    
 </body>

@@ -1,34 +1,83 @@
 <% layout("/layouts/boilerplate.ejs") %>
-<body>
-    <div class="row">
-    <div class="col-8 offset-3">
-    <h2 class="edit-heading">Complete Listing:</h2>
-    <div class="card">
-        <div class="col-8">
-        <img class="card-img-top edit-img" src="<%=particularlist.image.url%>" alt="Card image cap">
+
+    <body>
+        <div class="row">
+            <div class="col-8 offset-3">
+                <h2 class="edit-heading">
+                    <%=particularlist.title %>
+                </h2>
+                <div class="card listing-card">
+                    <div class="col-8">
+                        <img class="card-img-top edit-img" src="<%=particularlist.image.url%>" alt="Card image cap">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= particularlist.description %> <br>
+                                    &#8377;<%= particularlist.price.toLocaleString("en-IN") %>/night <br>
+                                        <%= particularlist.location %> <br>
+                                            <%= particularlist.country %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="id-btn">
+                    <form method="get" action="/listing/<%= particularlist._id %>/edit">
+                        <button type="submit" class="btn btn-dark edit-btn">Edit details</button>
+                    </form>
+                    <br>
+                    <form method="post" action="/listing/<%=particularlist.id%>/delete?_method=delete">
+                        <button type="submit" class="btn btn-dark">Delete</button>
+                    </form>
+                </div>
+                <br>
+        <div class="row">
+            <!-- <div class="reviews col-8 offset-3"> -->
+                <hr>
+                <h4>Drop a Review</h4>
+                <form method="POST" action="/listing/<%= particularlist._id %>/reviews" novalidate
+                    class="needs-validation">
+                    <div class="mb-3 mt-3">
+                        <label for="Rating" class="form-label">Rating</label>
+                        <input type="range" name="review[rating]" class="form-range" min="1" max="5" id="Rating">
+                        <br>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="comment" class="form-label">Comment</label>
+                        <textarea rows="5" cols="20" name="review[comment]" class="form-control" id="comment"
+                            required></textarea>
+                        <div class="invalid-feedback">write a review</div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Add Review</button>
+                </form>
+            <!-- </div> -->
         </div>
-        <div class="col-12">
-        <div class="card-body">
-        <p class="card-text">
-            <b><%=particularlist.title %></b> <br>
-            <!-- <%= particularlist.title %> <br> -->
-            <%= particularlist.description %> <br>
-            &#8377;<%= particularlist.price.toLocaleString("en-IN") %>/night <br>
-            <%= particularlist.location %> <br>
-            <%= particularlist.country %>
-        </p>
-    </div>
-    </div>
-    </div>
-    <div class="id-btn">
-    <form method="get" action="/listing/<%= particularlist._id %>/edit">
-        <button type="submit" class="btn btn-dark edit-btn">Edit details</button>
-    </form>
-    <br>
-    <form method="post" action="/listing/<%=particularlist.id%>/delete?_method=delete">
-        <button type="submit" class="btn btn-dark">Delete</button>
-    </form>
-    </div>
-    </div>
-    </div>
-</body>
+        <br>
+
+        <div class="row">
+            <!-- <div class="col-8 offset-3"> -->
+                <hr>
+                <p><b>All Reviews:</b></p>
+                <% for(review of particularlist.review){ %>
+                    <div class="card col-5 ms-2 mb-2">
+                        <div class="card-body">
+                        <div class="card-title"><b>🧑‍🎓Anonymous</b></div>
+                        <p class="card-text">
+                            <%= review.comment %>
+                        </p>
+                        <p class="card-text">
+                            <%= review.rating %> stars
+                        </p>
+                    </div>
+                    <form class="mb-2 mt-2" method="POST" action="/listing/<%= particularlist._id %>/review/<%= review._id %>?_method=DELETE">
+                        <button class="btn btn-dark">delete</button>
+                    </form>
+                    </div>
+
+                    <% } %>
+            <!-- </div> -->
+        </div>
+        </div>
+        </div>
+    </body>
