@@ -67,19 +67,20 @@ app.listen(port,()=>{
     console.log("server is running");
 });
 
-app.get("/demouser",async(req,res)=>{
-    let fakeuser=new User({
-        email:"skshoaib7092@gmail.com",
-        username:"shoaib923"
-    });
+// app.get("/demouser",async(req,res)=>{
+//     let fakeuser=new User({
+//         email:"skshoaib7092@gmail.com",
+//         username:"shoaib923"
+//     });
 
-    let registeredUser=await User.register(fakeuser,"shoaibf123");
-    res.send(registeredUser);
-});
+//     let registeredUser=await User.register(fakeuser,"shoaibf123");
+//     res.send(registeredUser);
+// });
 
 app.use((req,res,next)=>{
     res.locals.suc=req.flash("success");
     res.locals.error=req.flash("error");
+    res.locals.logpage=req.user;
     next();
 });
 

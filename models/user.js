@@ -7,8 +7,8 @@ const userSchema=new Schema({
         type:String,
         required:true
     },
-}
-);
+});
+
 // console.log(passportLocalMongoose);
 userSchema.plugin(passportLocalMongoose.default);
 

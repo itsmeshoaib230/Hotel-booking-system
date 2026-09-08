@@ -18,7 +18,7 @@ router.post("/signup",wrapAsync(async(req,res)=>{
     });
     let newuser=await User.register(reguser,password);
     req.flash("success","Welcome to Travelj❤️");
-    res.redirect("/listing");
+    res.redirect("/login");
 }catch(e){
     req.flash("error",e.message);
     res.redirect("/signup");
