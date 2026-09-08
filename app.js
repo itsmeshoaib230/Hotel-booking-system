@@ -14,6 +14,7 @@ const LocalStrategy=require("passport-local");
 const User=require("./models/user.js"); 
 const userRoutes=require("./routes/user.js");
 
+
 // pbkdf2 hashing algo is used
 
 const sessionOptions={
