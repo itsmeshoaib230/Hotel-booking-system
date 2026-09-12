@@ -4,13 +4,15 @@ const userController=require("../controllers/user.js");
 const {saveUrl}=require("../middleware.js");
 const passport=require("passport");
 
-router.get("/signup",userController.signUpPage);
+router
+    .route("/signup")
+    .get(userController.signUpPage)
+    .post(userController.signUpAuth);
 
-router.post("/signup",userController.signUpAuth);
-
-router.get("/login",userController.loginPage);
-
-router.post("/login",saveUrl,passport.authenticate("local",{failureRedirect:'/login', failureFlash:true}),userController.loginAuth);
+router
+    .route("/login")
+    .get(userController.loginPage)
+    .post(saveUrl,passport.authenticate("local",{failureRedirect:'/login', failureFlash:true}),userController.loginAuth);
 
 router.get("/logout",userController.logout);
 
