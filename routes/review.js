@@ -5,23 +5,15 @@ const ExpressError = require("../utils/ExpressError.js");
 const Review=require("../models/review.js");
 const list=require("../models/listing.js");
 const {reviewSchema}=require("../schema.js");
+const {validatereview, isLoggedIn, isAuthor}=require("../middleware.js");
 
-const validatereview=(req,res,next)=>{
-    let {error}=reviewSchema.validate(req.body);
-    if(error){
-        let errmsg=error.details.map((el)=>el.message).join(",");
-        throw new ExpressError(400,errmsg);
-    }else{
-        next();
-    }
-};
 
 
 //post req to save comment
-router.post("/reviews",validatereview,wrapAsync(async(req,res)=>{
+router.post("/reviews",isLoggedIn,validatereview,wrapAsync(async(req,res)=>{
     let listing=await list.findById(req.params.id);
     let newr=new Review(req.body.review);
-
+    newr.Author=req.user._id;
     listing.review.push(newr);
 
     await newr.save();
@@ -31,8 +23,9 @@ router.post("/reviews",validatereview,wrapAsync(async(req,res)=>{
 
 
 //to delete review
-router.delete("/review/:reviewid",wrapAsync(async(req,res)=>{
+router.delete("/review/:reviewid",isLoggedIn,isAuthor,wrapAsync(async(req,res)=>{
     let{id, reviewid}=req.params;
+    
     await list.findByIdAndUpdate(id,{$pull:{review: reviewid}});
     await Review.findOneAndDelete({_id: reviewid});
 

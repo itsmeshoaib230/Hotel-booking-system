@@ -5,17 +5,7 @@ const ExpressError = require("../utils/ExpressError.js");
 const {listSchema}=require("../schema.js");
 const list=require("../models/listing.js");
 const Review=require("../models/review.js");
-const {isLoggedIn}=require("../middleware.js");
-
-const validateSchema=(req,res,next)=>{
-    let {error}=listSchema.validate(req.body);
-    if(error){
-        let errmsg=error.details.map((el)=>el.message).join(",");
-        throw new ExpressError(400,errmsg);
-    }else{
-        next();
-    }
-}
+const {isLoggedIn, isOwner, validateSchema}=require("../middleware.js");
 
 
 
@@ -37,15 +27,21 @@ router.post("/new",validateSchema,wrapAsync(async (req,res,next)=>{
     if(!listt.image.url){
         listt.image.url="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9vbCUyMHJlc29ydHxlbnwwfHwwfHx8MA%3D%3D";
     }
+    listt.owner=req.user._id;
     await listt.save();
     req.flash("success","new resort is created");
     res.redirect("/listing");
 }));
 
 //a particular listing
-router.get("/:id",isLoggedIn,wrapAsync(async (req,res)=>{
+router.get("/:id",wrapAsync(async (req,res)=>{
     let{id}=req.params;
-    const particularlist=await list.findById(id).populate("review");
+    const particularlist=await list.findById(id)
+    .populate({path :"review",
+        populate:{
+            path:"Author",},
+    })
+    .populate("owner");
     if(!particularlist){
         req.flash("error","No resort found");
         res.redirect("/listing");
@@ -68,7 +64,7 @@ router.get("/:id/edit",isLoggedIn,wrapAsync(async (req,res)=>{
 }));
 
 //put req to edit
-router.put("/:id/edit",isLoggedIn,validateSchema,wrapAsync(async (req,res)=>{
+router.put("/:id/edit",isLoggedIn,isOwner,validateSchema,wrapAsync(async (req,res)=>{
     if(!req.body.listing){
         throw new ExppressError(400,"Bad request(update data correctly)")
     }
@@ -80,7 +76,7 @@ router.put("/:id/edit",isLoggedIn,validateSchema,wrapAsync(async (req,res)=>{
 }));
 
 //to delete listing
-router.delete("/:id/delete",isLoggedIn,wrapAsync(async (req,res)=>{
+router.delete("/:id/delete",isLoggedIn,isOwner,wrapAsync(async (req,res)=>{
     let{id}=req.params;
     await list.findByIdAndDelete(id);
     req.flash("success","Resort is removed from listing");

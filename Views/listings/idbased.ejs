@@ -12,15 +12,15 @@
                     </div>
                     <div class="col-8">
                         <div class="card-body">
-                            <p class="card-text">
-                                <%= particularlist.description %> <br>
-                                    &#8377;<%= particularlist.price.toLocaleString("en-IN") %>/night <br>
-                                        <%= particularlist.location %> <br>
-                                            <%= particularlist.country %>
-                            </p>
+                            <p class="card-text"> Owned by <%=particularlist.owner.username %>.</p>
+                            <p class="card text ss"><%= particularlist.description %></p>
+                            <p class="card-text">&#8377;<%= particularlist.price.toLocaleString("en-IN") %>/night </p>
+                            <p class="card-text">  <%= particularlist.location %> </p>
+                            <p class="card-text"><%= particularlist.country %> </p>
                         </div>
                     </div>
                 </div>
+                <% if(logpage && logpage._id.equals(particularlist.owner._id)){ %>
                 <div class="id-btn">
                     <form method="get" action="/listing/<%= particularlist._id %>/edit">
                         <button type="submit" class="btn btn-dark edit-btn">Edit details</button>
@@ -30,9 +30,11 @@
                         <button type="submit" class="btn btn-dark">Delete</button>
                     </form>
                 </div>
+                <% } %>
                 <br>
         <div class="row">
             <!-- <div class="reviews col-8 offset-3"> -->
+                <% if(logpage){ %>
                 <hr>
                 <h4>Drop a Review</h4>
                 <form method="POST" action="/listing/<%= particularlist._id %>/reviews" novalidate
@@ -54,7 +56,7 @@
             <!-- </div> -->
         </div>
         <br>
-
+        <% } %>
         <div class="row">
             <!-- <div class="col-8 offset-3"> -->
                 <hr>
@@ -62,7 +64,7 @@
                 <% for(review of particularlist.review){ %>
                     <div class="card col-5 ms-2 mb-2">
                         <div class="card-body">
-                        <div class="card-title"><b>🧑‍🎓Anonymous</b></div>
+                        <div class="card-title"><b>@<%= review.Author.username %></b></div>
                         <p class="card-text">
                             <%= review.comment %>
                         </p>
@@ -70,9 +72,11 @@
                             <%= review.rating %> stars
                         </p>
                     </div>
+                    <% if(logpage){ %>
                     <form class="mb-2 mt-2" method="POST" action="/listing/<%= particularlist._id %>/review/<%= review._id %>?_method=DELETE">
                         <button class="btn btn-dark">delete</button>
                     </form>
+                    <% }%>
                     </div>
 
                     <% } %>

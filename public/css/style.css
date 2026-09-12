@@ -2,6 +2,7 @@
     background-color:rgb(255, 252, 252);
 }
 .navbar-brand{
+    margin-left: 1%;
     color:rgb(254, 71, 83);
     font-size: 1.6rem;
 }
@@ -9,18 +10,20 @@
     color:#222222 !important;
     font-size: 1rem;
 }
-body {
+.mainbody{
+    margin:0;
+    padding:0;
+}
+.mainbody {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.container {
-    flex: 1;
-}
 
 footer {
     margin-top: auto;
+    width:100%;
 }
 
 .fa-info{
@@ -127,4 +130,8 @@ footer,.fa-info{
 
 .usercred{
     margin-right:0;
+}
+/* //ss is from idbased.ejs */
+.ss{
+    border:none;
 }

@@ -12,12 +12,14 @@
     referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="mainbody">
     <%- include("../includes/navbar.ejs") %>
     <%- include("../includes/flash.ejs") %>
+    <main>
     <div class="container">
         <%- body%>
     </div>
+    </main>
     <br>
     <%- include("../includes/footer.ejs") %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

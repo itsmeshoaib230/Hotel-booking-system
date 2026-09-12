@@ -4,6 +4,7 @@ const User=require("../models/user");
 const wrapAsync = require("../utils/wrapAsync");
 const passport=require("passport");
 const {isLoggedIn}=require("../middleware.js");
+const {saveUrl}=require("../middleware.js");
 
 router.get("/signup",(req,res)=>{
     res.render("./users/signup.ejs");
@@ -17,8 +18,14 @@ router.post("/signup",wrapAsync(async(req,res)=>{
         username:username
     });
     let newuser=await User.register(reguser,password);
-    req.flash("success","Welcome to Travelj❤️");
-    res.redirect("/login");
+    req.login(newuser,(err)=>{
+        if(err){
+            return next(err);
+        }
+        req.flash("success","Welcome to Travelj❤️");
+        res.redirect("/listing");
+    })
+
 }catch(e){
     req.flash("error",e.message);
     res.redirect("/signup");
@@ -29,9 +36,10 @@ router.get("/login",(req,res)=>{
     res.render("./users/login.ejs");
 });
 
-router.post("/login",passport.authenticate("local",{failureRedirect:'/login', failureFlash:true}),async(req,res)=>{
+router.post("/login",saveUrl,passport.authenticate("local",{failureRedirect:'/login', failureFlash:true}),async(req,res)=>{
     req.flash("success","Welcome back to travelJ");
-    res.redirect("/listing");
+    let s=res.locals.saveLink || "/listing";
+    res.redirect(s);
 });
 
 router.get("/logout",(req,res,next)=>{
