@@ -13,7 +13,7 @@
                     <div class="col-8">
                         <div class="card-body">
                             <p class="card-text"> Owned by <%=particularlist.owner.username %>.</p>
-                            <p class="card text ss"><%= particularlist.description %></p>
+                            <p class="card-text ss"><%= particularlist.description %></p>
                             <p class="card-text">&#8377;<%= particularlist.price.toLocaleString("en-IN") %>/night </p>
                             <p class="card-text">  <%= particularlist.location %> </p>
                             <p class="card-text"><%= particularlist.country %> </p>
@@ -39,7 +39,7 @@
                 <h4>Drop a Review</h4>
                 <form method="POST" action="/listing/<%= particularlist._id %>/reviews" novalidate class="needs-validation">
                     <div class="mb-3 mt-3">
-                        <label for="rating" class="form-label">Rating</label>
+                    <label for="rating" class="form-label">Rating</label>
                     <fieldset class="starability-slot">
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
                     <input type="radio" id="first-rate1" name="review[rating]" value="1" />
