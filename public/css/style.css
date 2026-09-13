@@ -3,7 +3,7 @@
 }
 .navbar-brand{
     margin-left: 1%;
-    color:rgb(254, 71, 83);
+    color:rgb(254, 71, 83) !important;
     font-size: 1.6rem;
 }
 .nav-link{
@@ -133,5 +133,5 @@ footer,.fa-info{
 }
 /* //ss is from idbased.ejs */
 .ss{
-    border:none;
+    border: none !important;;
 }

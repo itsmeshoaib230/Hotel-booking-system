@@ -9,6 +9,7 @@ router
     .get(isLoggedIn,
         listingController.newListingPage)
     .post(
+        isLoggedIn,
         validateSchema,
         listingController.newListingCreation);
 
