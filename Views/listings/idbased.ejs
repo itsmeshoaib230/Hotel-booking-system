@@ -1,5 +1,7 @@
 <% layout("/layouts/boilerplate.ejs") %>
-
+    <script>
+        const mapToken="<%=process.env.MAP_TOKEN %>";
+    </script>
     <body>
         <div class="row">
             <div class="col-8 offset-3">
@@ -36,11 +38,11 @@
                             <button type="submit" class="btn btn-dark">Delete</button>
                         </form>
                     </div>
-        
-        <br>
-        <% } %>
-
-                <div class="col-8">
+                <% } %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 offset-3">
                     <% if(logpage){ %>
                         <hr>
                         <h4>Drop a Review</h4>
@@ -72,17 +74,21 @@
                             <br>
                             <button type="submit" class="btn btn-success">Add Review</button>
                         </form>
-                </div>
-           
+            
                  <br>
             <% } %>
-                
-                    <div class="reviews col-8">
+            </div>
+        </div>   
+        <div class="row">
+            <div class="col-8 offset-3">
                         <hr>
+                         <% if(particularlist.review.length >0) { %>
                         <p><b>All Reviews:</b></p>
+                        <div class="row">
                         <% for(review of particularlist.review){ %>
+                            <!-- <div class="row"> -->
                             <div class="card col-5 ms-2 mb-2">
-                                <div class="card-body">
+                                <div class="card-body ms-2 mb-2 ">
                                     <div class="card-title"><b>@<%= review.Author.username %></b></div>
                                     <p class="starability-result" data-rating="<%= review.rating %>">
                                     </p>
@@ -94,28 +100,23 @@
                                 <% if(logpage){ %>
                                     <form class="mb-2 mt-2" method="POST"
                                         action="/listing/<%= particularlist._id %>/review/<%= review._id %>?_method=DELETE">
-                                        <button class="btn btn-dark">delete</button>
+                                        <button class="btn btn-dark ms-2">delete</button>
                                     </form>
                                     <% }%>
                             </div>
-
-                            <% } %>
-                    </div>
-                
-                <div class="col-8">
+                        <!-- </div> -->
+                        <% } %>
+                        </div>
+                <% } %>
+            </div>
+                <div class="row">
+                <div class="col-8 offset-3">
                     <h4>Where you'll be</h4>
                     <div id="map"></div>
                 </div>
+                </div>
             </div>
         </div>
-                <script>
-                    let mapToken = "<%= process.env.MAP_TOKEN %>";
-                    console.log(mapToken);
-                    mapboxgl.accessToken = mapToken;
-                    const map = new mapboxgl.Map({
-                        container: 'map', // container ID
-                        center: [-71.06776, 42.35816], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-                        zoom: 9 // starting zoom
-                    });
-                </script>
+                
     </body>
+    <script src="../js/map.js"></script>
