@@ -2,7 +2,8 @@ const express=require("express");
 const router=express.Router({mergeParams:true});
 const {validatereview, isLoggedIn, isAuthor}=require("../middleware.js");
 const reviewController=require("../controllers/review.js");
-
+const wrapAsync=require("../utils/wrapAsync.js");
+const list=require("../models/listing.js");
 
 //post req to save comment
 router.post("/reviews",isLoggedIn,validatereview,reviewController.reviewAdd); 

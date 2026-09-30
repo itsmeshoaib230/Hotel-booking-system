@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <body>
     <h3 class="indexejs">List Of Available Places:</h3>
-    <div class="row row-cols-lg-3 row-cols-m-2 row-cols-s-1">
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-1">
      <% for(let details of listingdetails){ %>
         <a class="cardanch" href="/listing/<%=details._id %>">
         <div class="card listing-card">
@@ -17,12 +17,4 @@
         </a>
      <% } %>
      </div>
-    <!-- <ul>
-    <% for(let details of listingdetails){ %>
-      <li><a href="/listing/<%= details._id %>"><%= details.title  %></a></li>
-    <% } %>
-    </ul> -->
-    <!-- <form method="get" action="/listing/new">
-        <button style="font-size: large; margin-left:45px;">Add resort</button>
-    </form> -->
 </body>

@@ -3,6 +3,9 @@ const router=express.Router({mergeParams:true});
 const userController=require("../controllers/user.js");
 const {saveUrl}=require("../middleware.js");
 const passport=require("passport");
+const wrapAsync=require("../utils/wrapAsync.js");
+const list=require("../models/listing.js");
+
 
 router
     .route("/signup")

@@ -1,10 +1,14 @@
 .navbar{
     background-color:rgb(255, 252, 252);
 }
+.cardanch {
+    text-decoration: none;
+    color: inherit;
+}
 .navbar-brand{
     margin-left: 1%;
     color:rgb(254, 71, 83) !important;
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
 }
 .nav-link{
     color:#222222 !important;
@@ -134,4 +138,9 @@ footer,.fa-info{
 /* //ss is from idbased.ejs */
 .ss{
     border: none !important;;
+}
+
+#map{
+    height:400px;
+    width:80vh;
 }

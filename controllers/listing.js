@@ -14,15 +14,17 @@ module.exports.newListingPage=(req,res)=>{
 };
 
 module.exports.newListingCreation=wrapAsync(async (req,res,next)=>{
-    let{title:t,description:d,image:i,price:p,location:l,country:c}=req.body.listing;
+    // return res.send(req.file);
+    let url=req.file.path;
     const listt=new list(req.body.listing);
+    listt.image.url=url;
     if(!listt.image.url){
         listt.image.url="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9vbCUyMHJlc29ydHxlbnwwfHwwfHx8MA%3D%3D";
     }
     listt.owner=req.user._id;
     await listt.save();
     req.flash("success","new resort is created");
-    res.redirect("/listing");
+    return res.redirect("/listing");
 });
 
 module.exports.particularListing=wrapAsync(async (req,res)=>{
@@ -47,9 +49,11 @@ module.exports.listingEditPage=wrapAsync(async (req,res)=>{
    
     if(!obj){
         req.flash("error","No resort found");
-        res.redirect("/listing");
+        res.redirect("/listing",);
     }else{
-    res.render("./listings/edit.ejs",{obj});
+        let OriginalUrl=obj.image.url;
+        OriginalUrl=OriginalUrl.replace("/upload","/upload/h_100,w_100");
+    res.render("./listings/edit.ejs",{obj, OriginalUrl});
     }
 });
 
@@ -60,6 +64,11 @@ module.exports.editPost=wrapAsync(async (req,res)=>{
     let{id}=req.params;
     let{title,description,image,price:p,location:l,country:c}=req.body.listing;
     const lisst=await list.findByIdAndUpdate(id, {title:title,description:description,image:image,price:p,location:l,country:c});
+    if(typeof req.file!=="undefined"){
+        let url=req.file.path;
+        lisst.image.url=url;
+        await lisst.save();
+    }
     req.flash("success","Update is successful.");
     res.redirect("/listing");
 });
