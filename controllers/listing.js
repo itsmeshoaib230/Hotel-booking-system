@@ -3,6 +3,9 @@ const list=require("../models/listing.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Review=require("../models/review.js");
 const {listSchema}=require("../schema.js");
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapToken=process.env.MAP_TOKEN;
+const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index=wrapAsync(async (req,res)=>{
     const listingdetails = await list.find({});
@@ -15,14 +18,22 @@ module.exports.newListingPage=(req,res)=>{
 
 module.exports.newListingCreation=wrapAsync(async (req,res,next)=>{
     // return res.send(req.file);
+    let response=await geocodingClient.forwardGeocode({
+          query: req.body.listing.location,
+          limit: 1
+           })
+         .send()
+
     let url=req.file.path;
     const listt=new list(req.body.listing);
     listt.image.url=url;
     if(!listt.image.url){
         listt.image.url="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9vbCUyMHJlc29ydHxlbnwwfHwwfHx8MA%3D%3D";
     }
+    listt.geometry=response.body.features[0].geometry;
     listt.owner=req.user._id;
     await listt.save();
+    // console.log(newl);
     req.flash("success","new resort is created");
     return res.redirect("/listing");
 });
