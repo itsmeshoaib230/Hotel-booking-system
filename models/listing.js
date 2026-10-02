@@ -55,6 +55,7 @@ let ListSchema=new Schema({
       required: true
     }
   },
+  
 });
 
 ListSchema.post("findOneAndDelete", async(list)=>{

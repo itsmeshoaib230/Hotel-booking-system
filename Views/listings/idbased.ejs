@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate.ejs") %>
     <script>
         const mapToken="<%=process.env.MAP_TOKEN %>";
-        const listing=<%- JSON.stringify(particularlist) %>;
+        const listing= <%- JSON.stringify(particularlist) %>;
     </script>
     <body>
         <div class="row">
@@ -88,7 +88,7 @@
                         <div class="row">
                         <% for(review of particularlist.review){ %>
                             <!-- <div class="row"> -->
-                            <div class="card col-5 ms-2 mb-2">
+                            <div class="card col-5 ms-3 mb-2">
                                 <div class="card-body ms-2 mb-2 ">
                                     <div class="card-title"><b>@<%= review.Author.username %></b></div>
                                     <p class="starability-result" data-rating="<%= review.rating %>">

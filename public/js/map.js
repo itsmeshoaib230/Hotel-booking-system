@@ -9,5 +9,5 @@ const map = new mapboxgl.Map({
 const marker = new mapboxgl.Marker({color: "red"})
   .setLngLat(listing.geometry.coordinates)
   .setPopup(new mapboxgl.Popup({offset:25})
-  .setHTML(`<h6><b>${listing.title}</b></h6><p>Excat Location is shared after booking</p>`))
+  .setHTML(`<h6><b>${listing.title}</b></h6><p>Exact Location will be shared after booking</p>`))
   .addTo(map);

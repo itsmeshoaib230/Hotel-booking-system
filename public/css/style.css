@@ -8,7 +8,7 @@
 .navbar-brand{
     margin-left: 1%;
     color:rgb(254, 71, 83) !important;
-    font-size: 1.6rem !important;
+    font-size: 1.3rem !important;
 }
 .nav-link{
     color:#222222 !important;
@@ -143,4 +143,9 @@ footer,.fa-info{
 #map{
     height:230px;
     width:120vh;
+}
+
+.top-search{
+    display:flex;
+    flex-wrap:wrap;
 }
