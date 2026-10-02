@@ -122,8 +122,11 @@ app.all("/{*splat}",(req,res,next)=>{
 });
 
 // middleware to handle errors
-app.use((err,req,res,next)=>{
-    let{statusCode=500,message="something went wrong"}=err;
-    res.render("errorMsg.ejs",{message});
-});
+app.use((err, req, res, next) => {
+    let { statusCode = 500, message = "something went wrong" } = err;
 
+    res.status(statusCode).render(
+        path.join(__dirname, "views", "errorPage.ejs"),
+        { message }
+    );
+});
