@@ -18,7 +18,7 @@ const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local"); 
 const User=require("./models/user.js"); 
-const list=require("../models/listing.js");
+const list=require("./models/listing.js");
 const userRoutes=require("./routes/user.js");
 const dns = require("dns");
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
