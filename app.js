@@ -18,6 +18,7 @@ const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local"); 
 const User=require("./models/user.js"); 
+const list=require("../models/listing.js");
 const userRoutes=require("./routes/user.js");
 const dns = require("dns");
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
@@ -105,6 +106,10 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.get("/",async(req,res)=>{
+   const listingdetails = await list.find({});
+   res.render("./listings/home.ejs",{ listingdetails });
+});
 //listing routes
 app.use("/listing", listingRoutes);
 //review routes
@@ -112,9 +117,8 @@ app.use("/listing/:id", reviewRoutes);
 //user routes
 app.use("/", userRoutes)
 //root page
-// app.get("/",(req,res)=>{
-//     res.send("you are at root page");
-// });
+// 
+
 
 //to handle error routes
 app.all("/{*splat}",(req,res,next)=>{
